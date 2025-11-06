@@ -15,4 +15,6 @@ GRANT ALL PRIVILEGES ON numenor_db.* TO 'ksatria'@'%';
 FLUSH PRIVILEGES;
 EOF
 
+service mariadb restart
+
 echo "Palantir Database ready! User: ksatria / Password: rahasia"

@@ -1,10 +1,13 @@
 #!/bin/bash
 
-echo "nameserver 10.73.3.3" > /etc/resolv.conf
-echo "nameserver 10.73.3.4" >> /etc/resolv.conf
+echo "nameserver 192.168.122.1" > /etc/resolv.conf
+
 
 apt update
 apt install -y nginx
+
+echo "nameserver 10.73.3.3" > /etc/resolv.conf
+echo "nameserver 10.73.3.4" >> /etc/resolv.conf
 
 cat > /etc/nginx/sites-available/laravel-lb <<'EOF'
 upstream laravel_workers {

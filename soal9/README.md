@@ -1,16 +1,3 @@
-# Arsitektur Númenor - Solusi Lengkap dari Awal
-
-## Komponen
-- **Palantir**: Database Server (MariaDB)
-- **Elendil/Isildur/Anarion**: Laravel Workers (Port 8001-8003)
-- **Elros**: Load Balancer (Round Robin)
-- **Client**: Amandil, Gilgalad (untuk testing)
-
-## Prasyarat Topologi
-- Prefix IP: `10.73.0.0/16`
-- DNS: `k19.com` (Erendis = `10.73.3.3`, Amdir = `10.73.3.4`)
-- Semua node non-router menggunakan DNS internal
-
 ## Cara Penggunaan
 
 ### 1. Setup Database
@@ -57,3 +44,6 @@ curl http://laravel.k19.com/api/airing
 
 # Load testing
 ab -n 100 -c 10 http://laravel.k19.com/
+
+
+mungkin eror:: lakukan php artisan migrate --seed

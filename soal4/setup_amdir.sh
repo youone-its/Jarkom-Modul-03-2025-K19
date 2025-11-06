@@ -1,6 +1,7 @@
 #!/bin/bash
 
 apt update && apt install -y bind9
+ln -s /etc/init.d/named /etc/init.d/bind9
 
 cat > /etc/bind/named.conf.local <<EOF
 zone "k19.com" {
@@ -19,9 +20,4 @@ service bind9 status
 
 sleep 3
 
-echo "Amdir DNS Slave ready. Checking zone transfer..."
-if [ -f /var/cache/bind/db.k19.com ]; then
-    echo "Amdir Zone transfer successful!"
-else
-    echo "Amdir Zone transfer failed. Check master config."
-fi
+dig @10.73.3.3 k19.com AXFR

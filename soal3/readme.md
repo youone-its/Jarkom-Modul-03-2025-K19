@@ -12,6 +12,4 @@ Langkah 2: Setup Minastir
 Langkah 3: Setup Semua Client
 
 chmod +x setup_client_proxy.sh
-./setup_client_proxy.sh Amandil
-./setup_client_proxy.sh Gilgalad
-./setup_client_proxy.sh Khamul
+./setup_client_proxy.sh

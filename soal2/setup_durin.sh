@@ -11,6 +11,6 @@ dhcrelay -4 10.73.4.2 eth1 eth2 eth3 > /var/log/dhcrelay.log 2>&1 &
 echo "DHCP relay started (PID: $!)"
 EOF
 
+service isc-dhcp-relay restart
 chmod +x /root/start-dhcp-relay.sh
-
-/root/start-dhcp-relay.sh
+bash /root/start-dhcp-relay.sh

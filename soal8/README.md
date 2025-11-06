@@ -29,6 +29,8 @@ chmod +x workers/setup_anarion.sh
 
 3. Jalankan Migrasi (Hanya di Elendil!)
 cd /var/www/laravel-simple-rest-api
+echo "nameserver 10.73.3.3" > /etc/resolv.conf
+echo "nameserver 10.73.3.4" >> /etc/resolv.conf
 php artisan migrate --seed
 
 4. Setup Load Balancer

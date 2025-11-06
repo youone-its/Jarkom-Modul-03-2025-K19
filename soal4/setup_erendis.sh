@@ -1,6 +1,7 @@
 #!/bin/bash
 
-apt update && apt install -y bind9 bind9utils
+apt update && apt install -y bind9
+ln -s /etc/init.d/named /etc/init.d/bind9
 
 cat > /etc/bind/named.conf.local <<EOF
 zone "k19.com" {

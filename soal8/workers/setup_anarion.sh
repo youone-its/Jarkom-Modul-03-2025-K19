@@ -14,8 +14,8 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 
 cd /var/www
 rm -rf laravel-simple-rest-api
-git clone https://github.com/elshiraphine/laravel-simple-rest-api.git laravel-simple-rest-api
-cd laravel-simple-rest-api
+git clone https://github.com/elshiraphine/laravel-simple-rest-api.git laravel
+cd laravel
 
 composer update --no-dev --optimize-autoloader
 
@@ -26,9 +26,9 @@ sed -i "s/DB_USERNAME=root/DB_USERNAME=ksatria/" .env
 sed -i "s/DB_PASSWORD=/DB_PASSWORD=rahasia/" .env
 php artisan key:generate
 
-chown -R www-data:www-data /var/www/laravel-simple-rest-api
-chmod -R 755 /var/www/laravel-simple-rest-api
-chmod -R 775 /var/www/laravel-simple-rest-api/storage /var/www/laravel-simple-rest-api/bootstrap/cache
+chown -R www-data:www-data /var/www/laravel
+chmod -R 755 /var/www/laravel
+chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache
 
 cat > /etc/nginx/sites-available/default <<'EOF'
 server {
@@ -40,9 +40,9 @@ server {
 
 server {
     listen 8003;
-    server_name anarion.k19.com localhost;
+    server_name anarion.k19.com localhost laravel.k19.com;
 
-    root /var/www/laravel-simple-rest-api/public;
+    root /var/www/laravel/public;
     index index.php;
 
     location / {
@@ -65,5 +65,8 @@ EOF
 service php8.4-fpm start
 service nginx start
 nginx -t && service nginx reload
+
+echo "nameserver 10.73.3.3" > /etc/resolv.conf
+echo "nameserver 10.73.3.4" >> /etc/resolv.conf
 
 echo "Elendil Setup complete! Access via: http://anarion.k19.com:8003"

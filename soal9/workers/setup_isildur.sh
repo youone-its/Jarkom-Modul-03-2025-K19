@@ -14,8 +14,8 @@ apt install -y php8.4 php8.4-fpm php8.4-cli php8.4-mbstring php8.4-xml php8.4-cu
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 cd /var/www
-git clone https://github.com/elshiraphine/laravel-simple-rest-api.git laravel-simple-rest-api
-cd laravel-simple-rest-api
+git clone https://github.com/elshiraphine/laravel-simple-rest-api.git laravel
+cd laravel
 
 composer update --no-dev --optimize-autoloader
 
@@ -26,9 +26,9 @@ sed -i "s/DB_USERNAME=root/DB_USERNAME=ksatria/" .env
 sed -i "s/DB_PASSWORD=/DB_PASSWORD=rahasia/" .env
 php artisan key:generate
 
-chown -R www-data:www-data /var/www/laravel-simple-rest-api
-chmod -R 755 /var/www/laravel-simple-rest-api
-chmod -R 775 /var/www/laravel-simple-rest-api/storage /var/www/laravel-simple-rest-api/bootstrap/cache
+chown -R www-data:www-data /var/www/laravel
+chmod -R 755 /var/www/laravel
+chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache
 
 cat > /etc/nginx/sites-available/default <<'EOF'
 server {
@@ -40,9 +40,9 @@ server {
 
 server {
     listen 8002;
-    server_name anarion.k19.com localhost laravel.k19.com;
+    server_name anarion.k19.com localhost laravel.k19.com ;
 
-    root /var/www/laravel-simple-rest-api/public;
+    root /var/www/laravel/public;
     index index.php;
 
     location / {
@@ -61,6 +61,10 @@ server {
     }
 }
 EOF
+
+chown -R www-data:www-data /var/www/laravel
+chmod -R 755 /var/www/laravel
+chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache
 
 service php8.4-fpm start
 service nginx start

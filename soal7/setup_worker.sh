@@ -32,6 +32,7 @@ git clone https://github.com/elshiraphine/laravel-simple-rest-api.git laravel
 
 echo "Laravel Worker Installing Laravel dependencies..."
 cd laravel
+composer update --no-dev --optimize-autoloader
 composer install --no-dev --optimize-autoloader
 
 echo "Laravel Worker Configuring .env..."
@@ -39,7 +40,7 @@ cp .env.example .env
 php artisan key:generate
 
 echo "Laravel Worker Setting permissions..."
-chown -R www-www-data /var/www/laravel
+chown -R www-data /var/www/laravel
 chmod -R 755 /var/www/laravel
 chmod -R 775 /var/www/laravel/storage /var/www/laravel/bootstrap/cache
 

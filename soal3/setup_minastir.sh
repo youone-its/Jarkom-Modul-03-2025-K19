@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "nameserver 192.168.122.1" >> /etc/resolv.conf
 apt update && apt install -y squid
 
 cp /etc/squid/squid.conf /etc/squid/squid.conf.bak
